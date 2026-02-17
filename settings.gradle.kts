@@ -6,21 +6,31 @@ plugins {
   id("dev.scaffoldit") version "0.2.+"
 }
 
+common {
+  dependencies {
+    compileOnly("com.hypixel.hytale:Server:+")
+  }
+
+  repositories {
+    maven("https://maven.hytale.com/release")
+  }
+
+  include("multiplehud", "models")
+}
+
 hytale {
+  include("core")
+
   usePatchline("release")
   useVersion("latest")
 
-  repositories {
-  }
-
-  dependencies {
-  }
+  val pluginMainClass = providers.gradleProperty("plugin.mainClass").get()
 
   manifest {
-    Version = "1.0.0"
+    Version = providers.gradleProperty("version").get()
 
     Group = "MrEmPee"
-    Main = "me.empee.template.TemplatePlugin"
+    Main = pluginMainClass
 
     Name = "TemplatePlugin"
     Description = "A really beautiful template system"

@@ -6,7 +6,8 @@ import com.hypixel.hytale.server.core.command.system.AbstractCommand;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import io.avaje.inject.BeanScope;
-import me.empee.template.listeners.IListener;
+import me.empee.utils.models.markers.IHytaleSystem;
+import me.empee.utils.models.markers.IListener;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -39,6 +40,13 @@ public class TemplatePlugin extends JavaPlugin {
     for (IListener<IBaseEvent<?>> eventListener : eventListeners) {
       log.atInfo().log("Registering event listener %s", eventListener.getClass().getName());
       getEventRegistry().registerGlobal(eventListener.getEvent(), eventListener::handle);
+    }
+
+    List<IHytaleSystem> systems = beanScope.list(IHytaleSystem.class);
+
+    for (IHytaleSystem system : systems) {
+      log.atInfo().log("Registering hytale system %s", system.getClass().getName());
+      getEntityStoreRegistry().registerSystem(system);
     }
   }
 

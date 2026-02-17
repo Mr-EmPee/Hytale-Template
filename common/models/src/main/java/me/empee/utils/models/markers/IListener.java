@@ -1,4 +1,4 @@
-package me.empee.template.listeners;
+package me.empee.utils.models.markers;
 
 import com.hypixel.hytale.event.IBaseEvent;
 
