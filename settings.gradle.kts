@@ -3,12 +3,16 @@ import dev.scaffoldit.hytale.wire.HytaleManifest
 rootProject.name = "Hytale-Template"
 
 plugins {
-  id("dev.scaffoldit") version "0.2.9"
+  id("dev.scaffoldit") version "0.2.14"
 }
+
+val serverVersion = providers.gradleProperty("server.version").get()
+val pluginMainClass = providers.gradleProperty("plugin.mainClass").get()
+val pluginVersion = providers.gradleProperty("plugin.version").get()
 
 common {
   dependencies {
-    compileOnly("com.hypixel.hytale:Server:+")
+    compileOnly("com.hypixel.hytale:Server:${serverVersion}")
   }
 
   repositories {
@@ -24,15 +28,15 @@ hytale {
   usePatchline("release")
   useVersion("latest")
 
-  val pluginMainClass = providers.gradleProperty("plugin.mainClass").get()
-
   manifest {
-    Version = providers.gradleProperty("version").get()
+    Main = pluginMainClass
+    Version = pluginVersion
+
+    Name = rootProject.name
+    ServerVersion = serverVersion
 
     Group = "MrEmPee"
-    Main = pluginMainClass
 
-    Name = "TemplatePlugin"
     Description = "A really beautiful template system"
     Website = "https://github.com/Mr-EmPee/Hytale-Template"
 

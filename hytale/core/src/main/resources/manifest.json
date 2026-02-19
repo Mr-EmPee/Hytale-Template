@@ -1,6 +1,6 @@
 {
     "Group": "MrEmPee",
-    "Name": "TemplatePlugin",
+    "Name": "Hytale-Template",
     "Version": "1.0.0-SNAPSHOT",
     "Description": "A really beautiful template system",
     "Authors": [
@@ -15,6 +15,6 @@
     "IncludesAssetPack": false,
     "Dependencies": {},
     "OptionalDependencies": {},
-    "ServerVersion": "*",
+    "ServerVersion": "+",
     "Main": "me.empee.template.TemplatePlugin"
 }
