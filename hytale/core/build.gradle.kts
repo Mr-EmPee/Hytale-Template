@@ -21,8 +21,8 @@ dependencies {
 tasks.shadowJar {
   configurations = listOf(project.configurations.shadow.get())
 
-  val pluginVersion: String by project
-  val pluginMainClass: String by project
+  val pluginMainClass = providers.gradleProperty("plugin.mainClass").get()
+  val pluginVersion = providers.gradleProperty("plugin.version").get()
 
   archiveVersion = pluginVersion
   archiveBaseName = rootProject.name
